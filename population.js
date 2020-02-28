@@ -2,11 +2,12 @@ class Population {
     constructor(ctx) {
         this.ctx = ctx;
         this.initialisePopulation()
-        this.persons[4][4].status.red.infection = 10;
-        this.persons[0][9].status.green.infection = 10;
-        this.persons[8][6].status.blue.infection = 10;
-        this.persons[7][6].status.blue.infection = 10;
-        this.persons[8][5].status.blue.infection = 10;
+        this.persons[4][4].status.blue.infection = 1;
+        this.persons[2][4].status.green.infection = 1;
+        this.persons[2][5].status.green.infection = 1;
+        this.persons[8][6].status.red.infection = 1;
+        this.persons[7][6].status.red.infection = 1;
+        this.persons[8][5].status.red.infection = 1;
     }
 
     initialisePopulation() {

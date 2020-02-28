@@ -3,8 +3,9 @@ class Config {
     static CANVAS_HEIGHT = 1000;
     static NUM_ROWS = 10;
     static NUM_COLS = 10;
-    static VERTICAL_SPACING = 45;
-    static HORIZONTAL_SPACING = 45;
+    static VERTICAL_SPACING = 25;
+    static HORIZONTAL_SPACING = 25;
+    static SUBSIDE_FACTOR = .99;
     static ANIMATION = {
         fps: 10
     }

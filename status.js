@@ -7,6 +7,7 @@ class Status {
      
     update() {
         this.infection += this.exposure;
+        this.infection *= Config.SUBSIDE_FACTOR;
         this.exposure = 0;
     }
 
