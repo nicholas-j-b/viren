@@ -5,22 +5,35 @@ class Person {
         this.y = y;
         this.width = 3;
         this.radius = 6;
-        this.infection = 0;
-        this.exposure = 0;
+        this.status = {
+            virus: new Status(),
+            blue: new Status()
+        };
     }
 
     infect(otherPerson) {
         let dist = this.getDistance(otherPerson);
         let transfer = this.getTransfer(dist);
-        otherPerson.getInfected(transfer);
+        otherPerson.contractStatus(transfer);
     }
 
-    getInfected(transfer) {
-        this.exposure += transfer;
+
+    contractStatus(transfer) {
+        for (status in transfer) {
+            this.status[status].contractStatus(transfer[status]);
+        }
     }
 
     getTransfer(dist) {
-        return (1 / (dist ** 2)) * this.infection;
+        let transfer = {};
+        for (status in this.status) {
+            transfer[status] = this.status[status].infection * this.getProximityMuliplier(dist);
+        }
+        return transfer;
+    }
+
+    getProximityMuliplier(dist) {
+        return 1 / (dist ** 2);
     }
 
     getDistance(otherPerson) {
@@ -28,11 +41,9 @@ class Person {
     }
 
     update() {
-        //if (this.infection > 0) {
-            //console.log(this);
-        //}
-        this.infection += this.exposure;
-        this.exposure = 0;
+        for (status in this.status) {
+            this.status[status].update();
+        }
     }
 
     draw() {
@@ -48,8 +59,8 @@ class Person {
 
     getColour() {
         let r = 100;
-        let g = 200 * this.infection;
-        let b = 80;
+        let g = 200 * this.status.virus.infection;
+        let b = 200 * this.status.blue.infection;
         return `rgb(${r}, ${g}, ${b})`;
     }
 }
