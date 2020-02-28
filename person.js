@@ -6,7 +6,8 @@ class Person {
         this.width = 3;
         this.radius = 6;
         this.status = {
-            virus: new Status(),
+            red: new Status(),
+            green: new Status(),
             blue: new Status()
         };
     }
@@ -58,8 +59,8 @@ class Person {
     }
 
     getColour() {
-        let r = 100;
-        let g = 200 * this.status.virus.infection;
+        let r = 200 * this.status.red.infection;
+        let g = 200 * this.status.green.infection;
         let b = 200 * this.status.blue.infection;
         return `rgb(${r}, ${g}, ${b})`;
     }
