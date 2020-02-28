@@ -8,6 +8,7 @@ class Sketch {
     constructor(canvas, ctx) {
         this.canvas = canvas;
         this.ctx = ctx;
+        this.population = new Population(ctx);
         var self = this;
         setInterval(function() {self.update(self)}, 1000 / Config.ANIMATION.fps);
     }
@@ -15,12 +16,12 @@ class Sketch {
     update(self) {
         self.draw(self);
         Timer.frame++;
-        //update()
+        this.population.update()
     }
 
     draw(self) {
         self.ctx.fillStyle = Config.COLOURS.background;
         self.ctx.fillRect(0, 0, Config.CANVAS_WIDTH, Config.CANVAS_HEIGHT);
-        //draw()
+        this.population.draw()
     }
 }
